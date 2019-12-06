@@ -125,10 +125,12 @@
   <ItemGroup>
     <ClCompile Include="lexical.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="syntax.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexical.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="syntax.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\..\Desktop\code.txt" />

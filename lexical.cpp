@@ -101,7 +101,7 @@ Token GetToken() {
 			TokenBuffer.clear();
 			switch (c) {
 			case '-':
-				if ((c == file.get()) && (c != '-')) {//识别到减号，如果下一个字符不是减号，就返回一个减号token
+				if ((c = file.get()) && (c != '-')) {//识别到减号，如果下一个字符不是减号，就返回一个减号token
 					token.type = MINUS;
 					token.lexeme = "-";
 					token.value = 0.0;
