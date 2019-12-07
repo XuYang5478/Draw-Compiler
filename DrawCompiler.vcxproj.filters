@@ -24,6 +24,9 @@
     <ClCompile Include="syntax.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="semantics.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexical.h">
@@ -35,9 +38,12 @@
     <ClInclude Include="syntax.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="semantics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Desktop\code.txt">
+    <Text Include="code.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>

@@ -1,4 +1,7 @@
+#pragma once
+
 #include "lexical.h"
+
 typedef double (*FuncPtr)(double);
 
 struct ExprNode
@@ -40,4 +43,5 @@ ExprNode* Factor();
 ExprNode* Component();
 ExprNode* Atom();
 
+//´òÓ¡Óï·¨Ê÷
 void printSyntaxTree(ExprNode* root, int indent);

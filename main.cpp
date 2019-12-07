@@ -1,6 +1,5 @@
-#include<easyx.h>
 #include<iomanip>
-#include"syntax.h"
+#include"semantics.h"
 using namespace std;
 
 int main(int argc, char* argv[]) {
@@ -9,7 +8,8 @@ int main(int argc, char* argv[]) {
 		cout << "Please input Source File!\n";
 		return 0;
 	}
-/*´Ê·¨·ÖÎö²âÊÔ*/
+
+	/*´Ê·¨·ÖÎö²âÊÔ*/
 	if (!InitScanner(argv[1])) {
 		cout << "Open Source File Error!\n";
 		return 0;
@@ -30,7 +30,13 @@ int main(int argc, char* argv[]) {
 	cout << "-----------------------------------------\n";
 	CloseScanner();
 
+	initgraph(1280, 720);		//³õÊ¼»¯»æÍ¼´°¿Ú
 
+	/*Óï·¨&ÓïÒå·ÖÎö&»æÍ¼*/
 	Parser(argv[1]);
+
+	getchar();
+	closegraph();		//¹Ø±Õ»æÍ¼´°¿Ú
+
 	return 0;
 }

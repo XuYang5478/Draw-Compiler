@@ -1,8 +1,8 @@
-#include"syntax.h"
-#include<cstdarg>
+#include"semantics.h"
 using namespace std;
 
-double Parameter;
+double Parameter = 0.0;		//为参数T分配的变量
+
 Token stoken;
 /*
 ExprNode* MakeExprNode(Token_Type opcode, ...) {
@@ -110,14 +110,20 @@ void Parser(string SrcFilePtr) {
 	Program();
 	CloseScanner();
 }
+
 //程序由语句构成，每条语句后面由分号结束
 void Program() {
 	cout << ">>> Enter Program()" << endl;
 
 	while (stoken.type != NONTOKEN) {
+		//语句的前面可能包含有注释符
+		if (stoken.type == COMMENT)
+			MatchToken(COMMENT);
+
 		Statement();
 		MatchToken(SEMICO);
 
+		//分号的后面可能包含有注释符
 		if (stoken.type == COMMENT)
 			MatchToken(COMMENT);
 	}
@@ -170,6 +176,8 @@ void OriginStatement() {
 	y_ptr = Expression(); printSyntaxTree(y_ptr, 0);
 	MatchToken(R_BRACKET);
 
+	SetOrigin(getExprValue(x_ptr), getExprValue(y_ptr));//计算数据并设置坐标平移全程量
+
 	cout << "<<< Exit OriginStatement()" << endl;
 }
 
@@ -183,6 +191,8 @@ void RotStatement() {
 	ExprNode* degree;
 	MatchToken(IS);
 	degree = Expression(); printSyntaxTree(degree, 0);
+
+	SetRotAngle(getExprValue(degree));	//计算数据并设置旋转角度
 
 	cout << "<<< Exit RotStatement()" << endl;
 }
@@ -201,6 +211,8 @@ void ScaleStatement() {
 	MatchToken(COMMA);
 	y_ptr = Expression(); printSyntaxTree(y_ptr, 0);
 	MatchToken(R_BRACKET);
+
+	SetScale(getExprValue(x_ptr), getExprValue(y_ptr));	//计算数据并设置缩放比例
 
 	cout << "<<< Exit ScaleStatement()" << endl;
 }
@@ -226,6 +238,8 @@ void ForStatement() {
 	MatchToken(COMMA);
 	y_ptr = Expression(); printSyntaxTree(y_ptr, 0);
 	MatchToken(R_BRACKET);
+
+	DrawLoop(getExprValue(start_ptr), getExprValue(end_ptr), getExprValue(step_ptr), x_ptr, y_ptr);
 
 	cout << "<<< Exit ForStatement()" << endl;
 }
